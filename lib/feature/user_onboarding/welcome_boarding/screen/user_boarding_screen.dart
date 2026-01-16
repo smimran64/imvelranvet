@@ -5,8 +5,8 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:imvelranvet/core/utils/constand/images_path.dart';
 import 'package:imvelranvet/core/utils/custom/custom_background_withimage.dart';
 import 'package:imvelranvet/core/utils/custom/custom_button.dart';
-import 'package:imvelranvet/feature/welcome_boarding/controller/user_boarding_controller.dart';
-import 'package:imvelranvet/feature/welcome_boarding/widgets/user_boarding_widget.dart';
+import 'package:imvelranvet/feature/user_onboarding/welcome_boarding/controller/user_boarding_controller.dart';
+import 'package:imvelranvet/feature/user_onboarding/welcome_boarding/widgets/user_boarding_widget.dart';
 import 'package:imvelranvet/routes/app_routes.dart';
 
 class WelcomeScreen extends StatelessWidget {

@@ -60,18 +60,20 @@ class ProgressBarWidget extends StatelessWidget {
           child: SizedBox(
             height: 6,
             child: Stack(
-              children: [              
-                Container(color: Colors.white.withValues(alpha: 0.7)),                
+              children: [
+                Container(color: Colors.white.withValues(alpha: 0.7)),
                 FractionallySizedBox(
                   widthFactor: controller.progressValue,
                   child: Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Color(0xFFFDE7BB),
-                          Color(0xFF9E6D38),
-                          Color(0xFFE9B86E),
-                          Color(0xFFE5B46B),
+                           Color(0xFFFDE7BB),
+                      Color(0xFF9E6D38),
+                      Color(0xFFE9B86E),
+                      Color(0xFF9D6933),
+                      Color(0xFFFEE9BF),
+                      Color(0xFF683E23),
                         ],
                       ),
                     ),
@@ -148,9 +150,11 @@ class CompanionCard extends StatelessWidget {
               ? const LinearGradient(
                   colors: [
                     Color(0xFFFDE7BB),
-                    Color(0xFF9E6D38),
-                    Color(0xFFE9B86E),
-                    Color(0xFFE5B46B),
+                      Color(0xFF9E6D38),
+                      Color(0xFFE9B86E),
+                      Color(0xFF9D6933),
+                      Color(0xFFFEE9BF),
+                      Color(0xFF683E23),
                   ],
                 )
               : null,
@@ -161,8 +165,11 @@ class CompanionCard extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: companion.bgGradient,
             borderRadius: BorderRadius.circular(16),
-            border: !isSelected                
-                ? Border.all(color: Colors.white.withValues(alpha: 0.7), width: 1)
+            border: !isSelected
+                ? Border.all(
+                    color: Colors.white.withValues(alpha: 0.7),
+                    width: 1,
+                  )
                 : null,
           ),
           child: ClipRRect(
@@ -174,44 +181,34 @@ class CompanionCard extends StatelessWidget {
     );
   }
 
-  /// Left side with text content
   Widget _buildLeftContent() {
     return Expanded(
       flex: 5,
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          
             _buildSelectionIndicator(),
-
             const SizedBox(height: 8),
-
-            /// Name
             Text(
               companion.name,
               style: getTextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
-                color: Color(0xFFFFFFFF),
+                color: const Color(0xFFFFFFFF),
               ),
             ),
-
             const SizedBox(height: 4),
-
-            /// Title
             Text(
               companion.title,
               style: getTextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
-                color: Color(0xFFFFFFFF),
+                color: const Color(0xFFFFFFFF),
               ),
             ),
-
             const Spacer(),
-
             if (companion.isActive && companion.theme.isNotEmpty)
               _buildActiveBadge()
             else if (!isUnlocked && companion.unlockXp != null)
@@ -221,7 +218,7 @@ class CompanionCard extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildRightImage() {
     return Expanded(
       flex: 4,
@@ -243,7 +240,6 @@ class CompanionCard extends StatelessWidget {
     );
   }
 
-  /// Selection indicator circle
   Widget _buildSelectionIndicator() {
     return Container(
       width: 14,
@@ -254,19 +250,16 @@ class CompanionCard extends StatelessWidget {
           color: const Color.fromARGB(179, 238, 221, 158),
           width: 2,
         ),
-        color: isSelected
-            ? const Color.fromARGB(255, 249, 249, 249)
-            : Colors.transparent,
+        color: isSelected ? const Color(0xFFF9F9F9) : Colors.transparent,
       ),
     );
   }
 
-  /// Active badge
   Widget _buildActiveBadge() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       decoration: BoxDecoration(
-        color: Color(0xFF410404),
+        color: const Color(0xFF410404),
         borderRadius: BorderRadius.circular(29),
       ),
       child: Text(
@@ -274,7 +267,7 @@ class CompanionCard extends StatelessWidget {
         style: getTextStyle(
           fontSize: 10,
           fontWeight: FontWeight.w400,
-          color: Color(0xFFFFFFFF),
+          color: const Color(0xFFFFFFFF),
         ),
       ),
     );
@@ -286,10 +279,8 @@ class CompanionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          
-          color: Colors.white.withValues(alpha: 0.7),
+          gradient: companion.bgGradient,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.white38),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

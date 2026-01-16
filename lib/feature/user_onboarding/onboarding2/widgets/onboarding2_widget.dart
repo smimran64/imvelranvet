@@ -69,10 +69,12 @@ class ProgressBarWidget2 extends StatelessWidget {
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Color(0xFFFDE7BB),
-                          Color(0xFF9E6D38),
-                          Color(0xFFE9B86E),
-                          Color(0xFFE5B46B),
+                           Color(0xFFFDE7BB),
+                      Color(0xFF9E6D38),
+                      Color(0xFFE9B86E),
+                      Color(0xFF9D6933),
+                      Color(0xFFFEE9BF),
+                      Color(0xFF683E23),
                         ],
                       ),
                     ),

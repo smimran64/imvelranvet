@@ -40,7 +40,7 @@ class ThemeCompanionScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return CompanionCard(
                             companion: controller.companions[index],
-                            isSelected: controller.selectedIndex.value == index,
+                            isSelected: controller.selectedIndex.value == index, 
                             onTap: () => controller.selectCompanion(index),
                             onUnlock: () => controller.unlockCompanion(index),
                             isUnlocked: controller.isCompanionUnlocked(index),

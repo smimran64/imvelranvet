@@ -8,7 +8,7 @@ import 'package:imvelranvet/feature/user_onboarding/onboarding6/screen/onboardin
 import 'package:imvelranvet/feature/user_onboarding/onboarding7/screen/onboarding7_screen.dart';
 import 'package:imvelranvet/feature/user_onboarding/onboarding8/screen/onboarding8_screen.dart';
 import 'package:imvelranvet/feature/user_onboarding/onboarding9/screen/onboarding9_screen.dart';
-import 'package:imvelranvet/feature/welcome_boarding/screen/user_boarding_screen.dart';
+import 'package:imvelranvet/feature/user_onboarding/welcome_boarding/screen/user_boarding_screen.dart';
 
 class AppRoutes {
   static String welcomeScreen = "/welcome";
