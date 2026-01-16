@@ -2,32 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imvelranvet/core/common/styles/global_text_style.dart';
+import 'package:imvelranvet/core/utils/constand/icon_path.dart';
 import 'package:imvelranvet/feature/user_onboarding/onboarding3/controller/onboarding3_controller.dart';
-
-class BackButtonWidget3 extends StatelessWidget {
-  const BackButtonWidget3({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = Get.find<Onboarding3Controller>();
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Row(
-        children: [
-          IconButton(
-            
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
-            ),
-            onPressed: controller.onBackPressed,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class StepsTextWidget3 extends StatelessWidget {
   const StepsTextWidget3({super.key});
@@ -48,13 +24,19 @@ class StepsTextWidget3 extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          Text(
-            '+10 XP',
-            style: getTextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+          Row(
+            children: [
+              Image.asset(ImageIcons.cup, width: 8, height: 14),
+              SizedBox(width: 1.5),
+              Text(
+                '+10 XP',
+                style: getTextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -63,7 +45,7 @@ class StepsTextWidget3 extends StatelessWidget {
 }
 
 class ProgressBarWidget3 extends StatelessWidget {
-  const ProgressBarWidget3({Key? key}) : super(key: key);
+  const ProgressBarWidget3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +60,7 @@ class ProgressBarWidget3 extends StatelessWidget {
             height: 6,
             child: Stack(
               children: [
-                Container(color: Colors.white.withOpacity(0.2)),
+                Container(color: Colors.white.withValues(alpha: 0.2)),
                 FractionallySizedBox(
                   widthFactor: controller.progressValue,
                   child: Container(
@@ -124,7 +106,7 @@ class OnboardingHeader3Widget extends StatelessWidget {
 }
 
 class FitnessGoalsWidget extends StatelessWidget {
-  const FitnessGoalsWidget({Key? key}) : super(key: key);
+  const FitnessGoalsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -150,18 +132,17 @@ class FitnessGoalsWidget extends StatelessWidget {
                     vertical: 16,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF521212).withOpacity(0.8),
+                    color: const Color(0xFF521212).withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: isSelected
                           ? const Color(0xFF6B1717)
-                          : Colors.white.withOpacity(0.1),
+                          : Colors.white.withValues(alpha: 0.1),
                       width: 1.5,
                     ),
                   ),
                   child: Row(
                     children: [
-                      // Custom Radio Icon
                       Container(
                         width: 20,
                         height: 20,
@@ -169,7 +150,6 @@ class FitnessGoalsWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(
                             color: const Color(0xFFE9B86E),
-
                             width: 3,
                           ),
                         ),
@@ -181,7 +161,6 @@ class FitnessGoalsWidget extends StatelessWidget {
                                     width: 15.44,
                                     height: 15.44,
                                     decoration: BoxDecoration(
-                                      // shape: BoxShape.rectangle,
                                       borderRadius: BorderRadius.circular(6),
                                       gradient: LinearGradient(
                                         colors: [
@@ -204,7 +183,7 @@ class FitnessGoalsWidget extends StatelessWidget {
                           style: getTextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                           ),
                         ),
                       ),

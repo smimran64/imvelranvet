@@ -25,18 +25,17 @@ class OnboardingController4 extends GetxController {
       Get.snackbar(
         'Required',
         'Please select your gender',
-        backgroundColor: Colors.orange.withOpacity(0.7),
+        backgroundColor: Colors.orange.withValues(alpha: 0.7),
         colorText: Colors.white,
         snackPosition: SnackPosition.BOTTOM,
       );
       return;
     }
 
-    // Navigate to next screen
     Get.snackbar(
       'Success',
       'Gender selected! +${xpPoints.value} XP',
-      backgroundColor: Colors.green.withOpacity(0.7),
+      backgroundColor: Colors.green.withValues(alpha: 0.7),
       colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
     );

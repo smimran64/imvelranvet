@@ -3,34 +3,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:imvelranvet/core/common/styles/global_text_style.dart';
+import 'package:imvelranvet/core/utils/constand/icon_path.dart';
 import 'package:imvelranvet/feature/user_onboarding/onboarding4/controller/onboarding4_controller.dart';
 
-class BackButtonWidget4 extends StatelessWidget {
-  const BackButtonWidget4({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = Get.find<OnboardingController4>();
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
-            ),
-            onPressed: controller.onBackPressed,
-          ),
-        ],
-      ),
-    );
-  }
-}
 class StepsTextWidget4 extends StatelessWidget {
   const StepsTextWidget4({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,13 +24,19 @@ class StepsTextWidget4 extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          Text(
-            '+10 XP',
-            style: getTextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+          Row(
+            children: [
+              Image.asset(ImageIcons.cup, width: 8, height: 14),
+              SizedBox(width: 1.5),
+              Text(
+                '+10 XP',
+                style: getTextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -77,7 +60,7 @@ class ProgressBarWidget4 extends StatelessWidget {
             height: 6,
             child: Stack(
               children: [
-                Container(color: Colors.white.withOpacity(0.2)),
+                Container(color: Colors.white.withValues(alpha: 0.2)),
                 FractionallySizedBox(
                   widthFactor: controller.progressValue,
                   child: Container(
@@ -104,7 +87,6 @@ class ProgressBarWidget4 extends StatelessWidget {
 
 class OnboardingHeader4Widget extends StatelessWidget {
   const OnboardingHeader4Widget({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -148,18 +130,17 @@ class GenderSelectionWidget extends StatelessWidget {
                     vertical: 16,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF521212).withOpacity(0.8),
+                    color: const Color(0xFF521212).withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: isSelected
                           ? const Color(0xFF6B1717)
-                          : Colors.white.withOpacity(0.1),
+                          : Colors.white.withValues(alpha: 0.1),
                       width: 1.5,
                     ),
                   ),
                   child: Row(
                     children: [
-                      // Custom Radio Icon
                       Container(
                         width: 20,
                         height: 20,
@@ -167,23 +148,26 @@ class GenderSelectionWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(6),
                           border: Border.all(
                             color: const Color(0xFFE9B86E),
-                            width: 2,
+                            width: 3,
                           ),
                         ),
                         child: isSelected
-                            ? Center(
-                                child: Container(
-                                  width: 12,
-                                  height: 12,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xFFFDE7BB),
-                                        Color(0xFF9E6D38),
-                                        Color(0xFFE9B86E),
-                                        Color(0xFFE5B46B),
-                                      ],
+                            ? Padding(
+                                padding: const EdgeInsets.all(2.50),
+                                child: Center(
+                                  child: Container(
+                                    width: 15.44,
+                                    height: 15.44,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          const Color(0xFFFDE7BB),
+                                          const Color(0xFF9E6D38),
+                                          const Color(0xFFE9B86E),
+                                          const Color(0xFFE5B46B),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -212,4 +196,3 @@ class GenderSelectionWidget extends StatelessWidget {
     );
   }
 }
-

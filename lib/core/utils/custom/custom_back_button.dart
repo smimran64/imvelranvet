@@ -1,39 +1,41 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
-// class CustomBackButton extends StatelessWidget {
-//   final VoidCallback? onPressed;
-//   final Color iconColor;
-//   final double iconSize;
-//   final EdgeInsets padding;
-//   final IconData icon;
+class FigmaBackButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+  final double size;
 
-//   const CustomBackButton({
-//     Key? key,
-//     this.onPressed,
-//     this.iconColor = Colors.white,
-//     this.iconSize = 20,
-//     this.icon = Icons.arrow_back_ios,
-//     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-//   }) : super(key: key);
+  const FigmaBackButton({super.key, this.onPressed, this.size = 40});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-//       child: Row(
-//         children: [
-//           // Back Button
-//           IconButton(
-//             icon: const Icon(
-//               Icons.arrow_back_ios,
-//               color: Colors.white,
-//               size: 20,
-//             ),
-//             onPressed: controller.onBackPressed,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPressed ?? () => Navigator.pop(context),
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF512212), Color(0xFF512212)],
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.35),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Center(
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+            size: size * 0.4,
+          ),
+        ),
+      ),
+    );
+  }
+}

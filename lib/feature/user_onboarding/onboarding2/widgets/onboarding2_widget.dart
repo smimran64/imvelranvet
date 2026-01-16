@@ -3,41 +3,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:imvelranvet/core/common/styles/global_text_style.dart';
+import 'package:imvelranvet/core/utils/constand/icon_path.dart';
 import 'package:imvelranvet/core/utils/constand/images_path.dart';
 import 'package:imvelranvet/feature/user_onboarding/onboarding2/controller/onboarding_controller.dart';
 
-class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = Get.find<Onboarding2Controller>();
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Row(
-        children: [
-          // Back Button
-          IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
-            ),
-            onPressed: controller.onBackPressed,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class StepsTextWidget2 extends StatelessWidget {
   const StepsTextWidget2({super.key});
-
   @override
   Widget build(BuildContext context) {
     Get.find<Onboarding2Controller>();
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -45,20 +19,26 @@ class StepsTextWidget2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Steps 2/9',
+            'Steps 2 / 9',
             style: getTextStyle(
               fontSize: 17,
               fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: Colors.white,
             ),
           ),
-          Text(
-            '+10 XP',
-            style: getTextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 255, 255, 255),
-            ),
+          Row(
+            children: [
+              Image.asset(ImageIcons.cup, width: 8, height: 14),
+              SizedBox(width: 1.5),
+              Text(
+                '+10 XP',
+                style: getTextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -67,7 +47,7 @@ class StepsTextWidget2 extends StatelessWidget {
 }
 
 class ProgressBarWidget2 extends StatelessWidget {
-  const ProgressBarWidget2({Key? key}) : super(key: key);
+  const ProgressBarWidget2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +62,7 @@ class ProgressBarWidget2 extends StatelessWidget {
             height: 6,
             child: Stack(
               children: [
-                // Background
-                Container(color: Colors.white.withOpacity(0.2)),
-
-                // Progress with Gradient
+                Container(color: Colors.white.withValues(alpha: 0.2)),
                 FractionallySizedBox(
                   widthFactor: controller.progressValue,
                   child: Container(
@@ -111,8 +88,7 @@ class ProgressBarWidget2 extends StatelessWidget {
 }
 
 class SetupTextWidget extends StatelessWidget {
-  const SetupTextWidget({Key? key}) : super(key: key);
-
+  const SetupTextWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -132,19 +108,16 @@ class SetupTextWidget extends StatelessWidget {
 }
 
 class ProfileSetupWidget extends StatelessWidget {
-  const ProfileSetupWidget({Key? key}) : super(key: key);
-
+  const ProfileSetupWidget({super.key});
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<Onboarding2Controller>();
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 32),
-
           // Profile Label
           Text(
             'Profile:',
@@ -154,7 +127,6 @@ class ProfileSetupWidget extends StatelessWidget {
               color: Color(0xFFFFFFFF),
             ),
           ),
-
           const SizedBox(height: 16),
 
           Center(
@@ -181,9 +153,7 @@ class ProfileSetupWidget extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: controller.profileImage.value != null
-                                // Picked image
                                 ? FileImage(controller.profileImage.value!)
-                                // Default asset image
                                 : const AssetImage(ImagesPath.profile)
                                       as ImageProvider,
                           ),
@@ -191,8 +161,6 @@ class ProfileSetupWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // Upload Button
                   Positioned(
                     top: 80,
                     left: -90,
@@ -251,14 +219,12 @@ class ProfileSetupWidget extends StatelessWidget {
           ),
 
           const SizedBox(height: 12),
-
-          // Name Input Field
           Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(10),              
+              color: Colors.white.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 width: 1,
               ),
             ),
@@ -268,7 +234,7 @@ class ProfileSetupWidget extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: 'Enter your name',
                 hintStyle: TextStyle(
-                  color: Colors.white.withOpacity(0.4),
+                  color: Colors.white.withValues(alpha: 0.4),
                   fontSize: 16,
                 ),
                 border: InputBorder.none,

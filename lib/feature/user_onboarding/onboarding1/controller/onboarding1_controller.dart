@@ -4,20 +4,16 @@ import 'package:imvelranvet/core/utils/constand/icon_path.dart';
 import 'package:imvelranvet/core/utils/constand/images_path.dart';
 
 class ThemeCompanionController extends GetxController {
-  // Selected companion index
-  final selectedIndex = Rxn<int>();
-
-  // Current step and total steps
+  
+  final selectedIndex = Rxn<int>();  
   final currentStep = 1.obs;
-  final totalSteps = 9.obs;
-
-  // XP points
+  final totalSteps = 9.obs; 
   final xpPoints = 10.obs;
 
-  // Progress calculation
+ 
   double get progressValue => currentStep.value / totalSteps.value;
 
-  // Companion data
+  
   final companions = <CompanionModel>[
     CompanionModel(
       id: 0,
@@ -26,7 +22,7 @@ class ThemeCompanionController extends GetxController {
       theme: 'Active Theme & Companion',
       unlockXp: null,
       imagePath: ImagesPath.serkael,
-      bgImage: ImageIcons.pyrIcon, // 👈
+      bgImage: ImageIcons.pyrIcon, 
       isActive: true,
       bgGradient: const LinearGradient(
         begin: .topLeft,
@@ -48,7 +44,7 @@ class ThemeCompanionController extends GetxController {
       theme: '',
       unlockXp: 250,
       imagePath: ImagesPath.riven,
-      bgImage: ImageIcons.rivIcon, // 👈
+      bgImage: ImageIcons.rivIcon, 
       isActive: false,
       bgGradient: const LinearGradient(
         colors: [Color(0xFF1B0033), Color(0xFF35065E), Color(0xFF1B0033)],
@@ -61,7 +57,7 @@ class ThemeCompanionController extends GetxController {
       theme: '',
       unlockXp: 250,
       imagePath: ImagesPath.pyrax,
-      bgImage: ImageIcons.serIcon, // 👈
+      bgImage: ImageIcons.serIcon, 
       isActive: false,
       bgGradient: const LinearGradient(
         colors: [Color(0xFF0F0E11), Color(0xFF201C23), Color(0xFF0F0E11)],
@@ -74,7 +70,7 @@ class ThemeCompanionController extends GetxController {
       theme: '',
       unlockXp: 250,
       imagePath: ImagesPath.bram,
-      bgImage: ImageIcons.bramIcon, // 👈
+      bgImage: ImageIcons.bramIcon, 
       isActive: false,
       bgGradient: const LinearGradient(
         colors: [Color(0xFF111C18), Color(0xFF1E332C), Color(0xFF111C18)],
@@ -85,11 +81,10 @@ class ThemeCompanionController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Set first companion as selected by default
+   
     selectedIndex.value = 0;
   }
 
-  // Select a companion
   void selectCompanion(int index) {
     if (isCompanionUnlocked(index)) {
       selectedIndex.value = index;
@@ -98,21 +93,18 @@ class ThemeCompanionController extends GetxController {
         'Locked',
         'This companion requires ${companions[index].unlockXp} XP to unlock',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.7),
+        backgroundColor: Colors.red.withValues(alpha: 0.7),
         colorText: Colors.white,
         duration: const Duration(seconds: 2),
       );
     }
-  }
-
-  // Check if companion is unlocked
+  }  
   bool isCompanionUnlocked(int index) {
     final companion = companions[index];
     if (companion.unlockXp == null) return true;
     return companion.isActive || xpPoints.value >= companion.unlockXp!;
   }
 
-  // Continue button action
   void onContinue() {
     if (selectedIndex.value != null) {
       final selected = companions[selectedIndex.value!];
@@ -121,25 +113,21 @@ class ThemeCompanionController extends GetxController {
         'Companion Selected',
         'You have chosen ${selected.name}!',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.withOpacity(0.7),
+        backgroundColor: Colors.green.withValues(alpha: 0.7),
         colorText: Colors.white,
         duration: const Duration(seconds: 2),
       );
-
-      // Navigate to next screen
-      // Get.toNamed('/next-screen');
+      
     } else {
       Get.snackbar(
         'No Selection',
         'Please select a companion first',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.orange.withOpacity(0.7),
+        backgroundColor: Colors.orange.withValues(alpha: 0.7),
         colorText: Colors.white,
       );
     }
-  }
-
-  // Unlock companion with XP
+  }  
   void unlockCompanion(int index) {
     final companion = companions[index];
     if (companion.unlockXp != null && xpPoints.value >= companion.unlockXp!) {
@@ -151,18 +139,16 @@ class ThemeCompanionController extends GetxController {
         'Unlocked!',
         '${companion.name} is now unlocked',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.withOpacity(0.7),
+        backgroundColor: Colors.green.withValues(alpha: 0.7),
         colorText: Colors.white,
-      );
-
-      // Auto select after unlock
+      );    
       selectCompanion(index);
     } else {
       Get.snackbar(
         'Insufficient XP',
         'You need ${companion.unlockXp} XP to unlock this companion',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.7),
+        backgroundColor: Colors.red.withValues(alpha: 0.7),
         colorText: Colors.white,
       );
     }

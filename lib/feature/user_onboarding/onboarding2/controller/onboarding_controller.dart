@@ -4,25 +4,13 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Onboarding2Controller extends GetxController {
-  final selectedIndex = Rxn<int>();
-
-  
+  final selectedIndex = Rxn<int>();  
   final currentStep = 2.obs;
-  final totalSteps = 9.obs;
-
-  
-  final xpPoints = 10.obs;
-
-  // Profile image
-  final Rxn<File> profileImage = Rxn<File>();
-
-  
+  final totalSteps = 9.obs;  
+  final xpPoints = 10.obs; 
+  final Rxn<File> profileImage = Rxn<File>();  
   final nameController = TextEditingController();
-
-  // Image picker
-  final ImagePicker _picker = ImagePicker();
-
- 
+  final ImagePicker _picker = ImagePicker(); 
   double get progressValue => currentStep.value / totalSteps.value;
 
   void onBackPressed() {
@@ -45,7 +33,7 @@ class Onboarding2Controller extends GetxController {
       Get.snackbar(
         'Error',
         'Failed to pick image: $e',
-        backgroundColor: Colors.red.withOpacity(0.7),
+        backgroundColor: Colors.red.withValues(alpha: 0.7),
         colorText: Colors.white,
         snackPosition: SnackPosition.BOTTOM,
       );
@@ -53,23 +41,22 @@ class Onboarding2Controller extends GetxController {
   }
 
   void onContinue() {
-    // Validate input
+   
     if (nameController.text.trim().isEmpty) {
       Get.snackbar(
         'Required',
         'Please enter your name',
-        backgroundColor: Colors.orange.withOpacity(0.7),
+        backgroundColor: Colors.orange.withValues(alpha: 0.7),
         colorText: Colors.white,
         snackPosition: SnackPosition.BOTTOM,
         duration: const Duration(seconds: 2),
       );
       return;
     }
-
     Get.snackbar(
       'Success',
       'Profile saved! +${xpPoints.value} XP',
-      backgroundColor: Colors.green.withOpacity(0.7),
+      backgroundColor: Colors.green.withValues(alpha: 0.7),
       colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 2),

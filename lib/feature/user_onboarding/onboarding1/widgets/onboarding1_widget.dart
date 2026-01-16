@@ -1,34 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imvelranvet/core/common/styles/global_text_style.dart';
+import 'package:imvelranvet/core/utils/constand/icon_path.dart';
 import 'package:imvelranvet/feature/user_onboarding/onboarding1/controller/onboarding1_controller.dart';
-
-// Top Bar Widget with Back Button
-class TopBarWidget extends StatelessWidget {
-  const TopBarWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = Get.find<ThemeCompanionController>();
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Row(
-        children: [
-          // Back Button
-          IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
-            ),
-            onPressed: controller.onBackPressed,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class StepsTextWidget extends StatelessWidget {
   const StepsTextWidget({super.key});
@@ -44,20 +18,26 @@ class StepsTextWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Steps 1/9',
+            'Steps 1 / 9',
             style: getTextStyle(
               fontSize: 17,
               fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: Colors.white,
             ),
           ),
-          Text(
-            '+10 XP',
-            style: getTextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 255, 255, 255),
-            ),
+          Row(
+            children: [
+              Image.asset(ImageIcons.cup, width: 8, height: 14),
+              SizedBox(width: 1.5),
+              Text(
+                '+10 XP',
+                style: getTextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -65,7 +45,6 @@ class StepsTextWidget extends StatelessWidget {
   }
 }
 
-// Progress Bar Widget
 class ProgressBarWidget extends StatelessWidget {
   const ProgressBarWidget({super.key});
 
@@ -81,12 +60,8 @@ class ProgressBarWidget extends StatelessWidget {
           child: SizedBox(
             height: 6,
             child: Stack(
-              children: [
-                // Background
-                // ignore: deprecated_member_use
-                Container(color: Colors.white.withOpacity(0.2)),
-
-                // Progress with Gradient
+              children: [              
+                Container(color: Colors.white.withValues(alpha: 0.7)),                
                 FractionallySizedBox(
                   widthFactor: controller.progressValue,
                   child: Container(
@@ -186,9 +161,8 @@ class CompanionCard extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: companion.bgGradient,
             borderRadius: BorderRadius.circular(16),
-            border: !isSelected
-                // ignore: deprecated_member_use
-                ? Border.all(color: Colors.white.withOpacity(0.2), width: 1)
+            border: !isSelected                
+                ? Border.all(color: Colors.white.withValues(alpha: 0.7), width: 1)
                 : null,
           ),
           child: ClipRRect(
@@ -209,7 +183,7 @@ class CompanionCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Selection Indicator
+          
             _buildSelectionIndicator(),
 
             const SizedBox(height: 8),
@@ -238,7 +212,6 @@ class CompanionCard extends StatelessWidget {
 
             const Spacer(),
 
-            /// ACTIVE / UNLOCK STATE
             if (companion.isActive && companion.theme.isNotEmpty)
               _buildActiveBadge()
             else if (!isUnlocked && companion.unlockXp != null)
@@ -248,8 +221,7 @@ class CompanionCard extends StatelessWidget {
       ),
     );
   }
-
-  /// Right side with image stack
+  
   Widget _buildRightImage() {
     return Expanded(
       flex: 4,
@@ -263,8 +235,7 @@ class CompanionCard extends StatelessWidget {
               companion.imagePath,
               width: 102,
               height: 143,
-              fit: BoxFit
-                  .contain, 
+              fit: BoxFit.contain,
             ),
           ),
         ],
@@ -297,7 +268,6 @@ class CompanionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(0xFF410404),
         borderRadius: BorderRadius.circular(29),
-        
       ),
       child: Text(
         companion.theme,
@@ -310,15 +280,14 @@ class CompanionCard extends StatelessWidget {
     );
   }
 
-  /// Unlock button
   Widget _buildUnlockButton() {
     return GestureDetector(
       onTap: onUnlock,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          // ignore: deprecated_member_use
-          color: Colors.white.withOpacity(0.15),
+          
+          color: Colors.white.withValues(alpha: 0.7),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Colors.white38),
         ),
