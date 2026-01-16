@@ -28,7 +28,7 @@ class StepsTextWidget extends StatelessWidget {
           Row(
             children: [
               Image.asset(ImageIcons.cup, width: 8, height: 14),
-              SizedBox(width: 1.5),
+              const SizedBox(width: 1.5),
               Text(
                 '+10 XP',
                 style: getTextStyle(
@@ -68,12 +68,10 @@ class ProgressBarWidget extends StatelessWidget {
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                           Color(0xFFFDE7BB),
-                      Color(0xFF9E6D38),
-                      Color(0xFFE9B86E),
-                      Color(0xFF9D6933),
-                      Color(0xFFFEE9BF),
-                      Color(0xFF683E23),
+                          Color(0xFFFDE7BB),
+                          Color(0xFF9E6D38),
+                          Color(0xFFE9B86E),
+                          Color(0xFFE5B46B),
                         ],
                       ),
                     ),
@@ -103,7 +101,7 @@ class TitleSection extends StatelessWidget {
             style: getTextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: const Color(0xFFFFFFFF),
             ),
           ),
           const SizedBox(height: 12),
@@ -113,7 +111,7 @@ class TitleSection extends StatelessWidget {
             style: getTextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: const Color(0xFFFFFFFF),
             ),
           ),
         ],
@@ -150,11 +148,9 @@ class CompanionCard extends StatelessWidget {
               ? const LinearGradient(
                   colors: [
                     Color(0xFFFDE7BB),
-                      Color(0xFF9E6D38),
-                      Color(0xFFE9B86E),
-                      Color(0xFF9D6933),
-                      Color(0xFFFEE9BF),
-                      Color(0xFF683E23),
+                    Color(0xFF9E6D38),
+                    Color(0xFFE9B86E),
+                    Color(0xFFE5B46B),
                   ],
                 )
               : null,
@@ -172,71 +168,69 @@ class CompanionCard extends StatelessWidget {
                   )
                 : null,
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Row(children: [_buildLeftContent(), _buildRightImage()]),
-          ),
+          child: _buildCardContent(),
         ),
       ),
     );
   }
 
-  Widget _buildLeftContent() {
-    return Expanded(
-      flex: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSelectionIndicator(),
-            const SizedBox(height: 8),
-            Text(
-              companion.name,
-              style: getTextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: const Color(0xFFFFFFFF),
-              ),
+  Widget _buildCardContent() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 5,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSelectionIndicator(),
+                const SizedBox(height: 8),
+                Text(
+                  companion.name,
+                  style: getTextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFFFFFFFF),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  companion.title,
+                  style: getTextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFFFFFFFF),
+                  ),
+                ),
+                const Spacer(),
+                if (companion.isActive && companion.theme.isNotEmpty)
+                  _buildActiveBadge()
+                else if (!isUnlocked && companion.unlockXp != null)
+                  _buildUnlockButton(),
+              ],
             ),
-            const SizedBox(height: 4),
-            Text(
-              companion.title,
-              style: getTextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: const Color(0xFFFFFFFF),
-              ),
-            ),
-            const Spacer(),
-            if (companion.isActive && companion.theme.isNotEmpty)
-              _buildActiveBadge()
-            else if (!isUnlocked && companion.unlockXp != null)
-              _buildUnlockButton(),
-          ],
+          ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildRightImage() {
-    return Expanded(
-      flex: 4,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(companion.bgImage, fit: BoxFit.cover),
+        Expanded(
+          flex: 4,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(companion.bgImage, fit: BoxFit.cover),
+              ),
+              Center(
+                child: Image.asset(
+                  companion.imagePath,
+                  width: 102,
+                  height: 143,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ],
           ),
-          Center(
-            child: Image.asset(
-              companion.imagePath,
-              width: 102,
-              height: 143,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

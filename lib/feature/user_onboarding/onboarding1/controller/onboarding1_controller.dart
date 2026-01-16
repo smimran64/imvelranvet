@@ -4,16 +4,13 @@ import 'package:imvelranvet/core/utils/constand/icon_path.dart';
 import 'package:imvelranvet/core/utils/constand/images_path.dart';
 
 class ThemeCompanionController extends GetxController {
-  
-  final selectedIndex = Rxn<int>();  
+  final selectedIndex = Rxn<int>();
   final currentStep = 1.obs;
-  final totalSteps = 9.obs; 
+  final totalSteps = 9.obs;
   final xpPoints = 10.obs;
 
- 
   double get progressValue => currentStep.value / totalSteps.value;
 
-  
   final companions = <CompanionModel>[
     CompanionModel(
       id: 0,
@@ -22,7 +19,7 @@ class ThemeCompanionController extends GetxController {
       theme: 'Active Theme & Companion',
       unlockXp: null,
       imagePath: ImagesPath.serkael,
-      bgImage: ImageIcons.pyrIcon, 
+      bgImage: ImageIcons.serIcon,
       isActive: true,
       bgGradient: const LinearGradient(
         begin: .topLeft,
@@ -44,7 +41,7 @@ class ThemeCompanionController extends GetxController {
       theme: '',
       unlockXp: 250,
       imagePath: ImagesPath.riven,
-      bgImage: ImageIcons.rivIcon, 
+      bgImage: ImageIcons.rivIcon,
       isActive: false,
       bgGradient: const LinearGradient(
         colors: [Color(0xFF1B0033), Color(0xFF35065E), Color(0xFF1B0033)],
@@ -57,7 +54,7 @@ class ThemeCompanionController extends GetxController {
       theme: '',
       unlockXp: 250,
       imagePath: ImagesPath.pyrax,
-      bgImage: ImageIcons.serIcon, 
+      bgImage: ImageIcons.pyrIcon,
       isActive: false,
       bgGradient: const LinearGradient(
         colors: [Color(0xFF0F0E11), Color(0xFF201C23), Color(0xFF0F0E11)],
@@ -70,7 +67,7 @@ class ThemeCompanionController extends GetxController {
       theme: '',
       unlockXp: 250,
       imagePath: ImagesPath.bram,
-      bgImage: ImageIcons.bramIcon, 
+      bgImage: ImageIcons.bramIcon,
       isActive: false,
       bgGradient: const LinearGradient(
         colors: [Color(0xFF111C18), Color(0xFF1E332C), Color(0xFF111C18)],
@@ -81,7 +78,7 @@ class ThemeCompanionController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-   
+
     selectedIndex.value = 0;
   }
 
@@ -98,7 +95,8 @@ class ThemeCompanionController extends GetxController {
         duration: const Duration(seconds: 2),
       );
     }
-  }  
+  }
+
   bool isCompanionUnlocked(int index) {
     final companion = companions[index];
     if (companion.unlockXp == null) return true;
@@ -117,7 +115,6 @@ class ThemeCompanionController extends GetxController {
         colorText: Colors.white,
         duration: const Duration(seconds: 2),
       );
-      
     } else {
       Get.snackbar(
         'No Selection',
@@ -127,7 +124,8 @@ class ThemeCompanionController extends GetxController {
         colorText: Colors.white,
       );
     }
-  }  
+  }
+
   void unlockCompanion(int index) {
     final companion = companions[index];
     if (companion.unlockXp != null && xpPoints.value >= companion.unlockXp!) {
@@ -141,7 +139,7 @@ class ThemeCompanionController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green.withValues(alpha: 0.7),
         colorText: Colors.white,
-      );    
+      );
       selectCompanion(index);
     } else {
       Get.snackbar(
