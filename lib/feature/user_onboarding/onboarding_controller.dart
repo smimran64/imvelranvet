@@ -1,4 +1,9 @@
-import 'package:get/get.dart';
+
+
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class OnboardingController extends GetxController {
   final currentStep = 1.obs;
@@ -40,6 +45,18 @@ class OnboardingController extends GetxController {
       case 2:
         break;
       case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        break;
+      case 8:
+        break;
+      case 9:
         break;
 
       default:
@@ -104,5 +121,4 @@ class OnboardingController extends GetxController {
     currentStep.value = 1;
     currentXP.value = 0;
   }
- 
 }
